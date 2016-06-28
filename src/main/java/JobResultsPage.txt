@@ -1,0 +1,28 @@
+package pages;
+
+import utils.Reporter;
+import wrappers.LinkedInWrappers;
+
+public class JobResultPage extends LinkedInWrappers{
+
+	// Verify the Job Result Page Title
+	public JobResultPage (){
+		if (!verifyTitle("Search | LinkedIn"))
+			Reporter.reportStep("This is not Job Result Page", "FAIL");
+	}
+	
+	// Verify the color of the First View button is blue
+	public JobResultPage verifyFirstViewButtonColor(){
+		driver.findElementByXPath("//*[@id='results']/li[1]/div/div[3]/a").getCssValue("color");
+		System.out.println(driver.findElementByXPath("//*[@id='results']/li[1]/div/div[3]/a").getCssValue("color"));
+		verifyByColor("//*[@id='results']/li[1]/div/div[3]/a", "color","rgba(255, 255, 255, 1)");
+		return this;		
+	}
+
+	//Click View on the second Job
+	public JobResultPage clickSecondViewButton(){
+		clickByXpath("//*[@id='results']/li[2]/div/div[3]/a[1]");
+		return this;
+		
+	}
+}
